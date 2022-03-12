@@ -15,6 +15,8 @@ app.use(
 app.use(express.json());
 
 app.use("/user", userRouter);
+app.use("/image", imageRouter);
+app.use("util", utilRouter);
 
 // route
 app.get("/", (req, res) => {

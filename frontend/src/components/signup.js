@@ -9,22 +9,17 @@ import Swal from "sweetalert2";
 const Signup = () => {
   const url = app_config.api_url;
 
-  // Two important thing to use with Formik
-  // 1. formObject
+  
   const signupForm = {
     email: "",
     username: "",
     password: "",
   };
 
-  // 2. submit callback function
+
   const SignupSubmit = (formdata) => {
     console.log(formdata);
 
-    // three things are required to request
-    // 1. address
-    // 2. http request method
-    // 3. data and its format
 
     const reqOpt = {
       method: "POST",

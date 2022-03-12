@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.home{
+  background: url(./images/nature.jpg) no-repeat;
+  background-attachment: fixed; 
+  background-size: cover;
+  height: 100vh;
+  
+}

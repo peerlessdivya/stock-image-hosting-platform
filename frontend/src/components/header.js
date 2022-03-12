@@ -42,7 +42,7 @@ const Header = (props) => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/event"
+                to="/signup"
                 activeClassName="active"
                 className="nav-link"
               >
