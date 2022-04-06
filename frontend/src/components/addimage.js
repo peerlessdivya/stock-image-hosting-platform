@@ -5,38 +5,39 @@ import GoogleIcon from "@mui/icons-material/Google";
 import "./signup.css";
 import app_config from "../config";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
-const Signup = () => {
+const AddImage = () => {
   const url = app_config.api_url;
+
+  const [file, setFile] = useState("");
 
   // Two important thing to use with Formik
   // 1. formObject
   const imageForm = {
     title: "",
-    discription: "",
-    author: "",
+    description: "",
+    author: "62247888b723646bbec9672b",
     file: "",
+  };
+
+  const uploadFile = (e) => {
+    let file = e.target.files[0];
+    setFile(file.name);
+    let formdata = new FormData();
+    formdata.append("file", file);
+
+    fetch(url + "/util/uploadfile", { method: "POST", body: formdata })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   // 2. submit callback function
   const imageSubmit = (formdata) => {
+    formdata.file = file;
     console.log(formdata);
-
-
-    const uploadFile = (e) => {
-        let file = e.target.files[0];
-        setFile(file.name)
-        let formdata = new FormData();
-        formdata.append('file', file);
-    
-        fetch(url + '/util/uploadfile', { method: 'POST', body: formdata })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-          })
-      }
-    
-                
 
     // three things are required to request
     // 1. address
@@ -77,7 +78,7 @@ const Signup = () => {
             <Formik initialValues={imageForm} onSubmit={imageSubmit}>
               {({ values, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
-                  <label className="mt-3">Email</label>
+                  <label className="mt-3">Title:</label>
                   <input
                     placeholder="title"
                     className="form-control"
@@ -86,7 +87,7 @@ const Signup = () => {
                     onChange={handleChange}
                   />
 
-                  <label className="mt-3">Username</label>
+                  <label className="mt-3">Description:</label>
                   <input
                     placeholder="description"
                     className="form-control"
@@ -96,9 +97,8 @@ const Signup = () => {
                   />
 
                   <label>upload file</label>
-                  <input
-                  type = "file" onChange={uploadFile}/>
-                        <Button
+                  <input type="file" onChange={uploadFile} />
+                  <Button
                     type="submit"
                     className="w-100 mt-5"
                     variant="contained"
@@ -117,4 +117,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AddImage;

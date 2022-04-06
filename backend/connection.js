@@ -1,12 +1,11 @@
-const mongoose = require("mongoose");
-
-const uri =
-  "mongodb+srv://divyagupta:vatsalyagupta@cluster0.gvyon.mongodb.net/unsplash?retryWrites=true&w=majority";
+const mongoose = require ("mongoose");
+const api_config = require ("./config")
+const url = api_config.db_url;
 
 mongoose
-  .connect(uri)
+  .connect(url)
   .then(() => {
-    console.log("database successfully connected");
+    console.log("database connected");
   })
   .catch((err) => {
     console.error(err);

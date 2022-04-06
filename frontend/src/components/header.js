@@ -60,6 +60,15 @@ const Header = (props) => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink
+                to="/addimage"
+                activeClassName="active"
+                className="nav-link"
+              >
+               Upload New Image
+              </NavLink>
+            </li>
+            <li className="nav-item">
 
               <Switch
                 checked={props.darkTheme}
