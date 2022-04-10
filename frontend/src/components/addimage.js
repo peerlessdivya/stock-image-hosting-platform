@@ -12,12 +12,16 @@ const AddImage = () => {
 
   const [file, setFile] = useState("");
 
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+
   // Two important thing to use with Formik
   // 1. formObject
   const imageForm = {
     title: "",
     description: "",
-    author: "62247888b723646bbec9672b",
+    author: currentUser._id,
     file: "",
   };
 

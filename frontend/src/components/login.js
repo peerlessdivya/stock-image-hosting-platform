@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { Button, Card, CardContent } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
+import { useNavigate } from "react-router-dom";
 
 import "./signup.css";
 import app_config from "../config";
@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const url = app_config.api_url;
+
+  const navigate = useNavigate();
 
   // Two important thing to use with Formik
   // 1. formObject
@@ -41,6 +43,14 @@ const Login = () => {
             icon: "success",
             title: "Success",
             text: "You have loggdin successfully!",
+          }).then(() => {
+            res.json().then((data) => {
+              console.log(data);
+              // setCurrentUser(data);
+              // storing value in session
+              sessionStorage.setItem("user", JSON.stringify(data));
+              navigate("/addimage");
+            });
           });
         } else if (res.status === 300) {
           Swal.fire({
